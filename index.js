@@ -1,3 +1,10 @@
+const refs = {
+  days: document.querySelector('[data-value="days"]'),
+  hours: document.querySelector('[data-value="hours"]'),
+  mins: document.querySelector('[data-value="mins"]'),
+  secs: document.querySelector('[data-value="secs"]'),
+};
+
 class CountdownTimer {
   constructor(timeObj) {
     this.selector = timeObj.selector;
@@ -51,46 +58,33 @@ class CountdownTimer {
     return { secsPlace, minsPlace, hoursPlace, daysPlace };
   };
 
+  //////////////////////////////////////////////////////////
+
+  //////////////////////////////////////////////////////////
   reflectInitialDate = () => {
     let values = this.getValues();
-    document.querySelector(
-      `${this.selector} span[data-value="secs"]`
-    ).textContent = values.secsPlace;
-    document.querySelector(
-      `${this.selector} span[data-value="mins"]`
-    ).textContent = values.minsPlace;
-    document.querySelector(
-      `${this.selector} span[data-value="hours"]`
-    ).textContent = values.hoursPlace;
-    document.querySelector(
-      `${this.selector} span[data-value="days"]`
-    ).textContent = values.daysPlace;
+    refs.secs.textContent = values.secsPlace;
+    refs.mins.textContent = values.minsPlace;
+    refs.hours.textContent = values.hoursPlace;
+    refs.days.textContent = values.daysPlace;
   };
 
   reflectTime = () => {
     let numbers = this.getNumbers();
     let values = this.getValues();
 
-    document.querySelector(
-      `${this.selector} span[data-value="secs"]`
-    ).textContent = values.secsPlace;
+    refs.secs.textContent = values.secsPlace;
 
     if (numbers.secs === 59) {
-      document.querySelector(
-        `${this.selector} span[data-value="mins"]`
-      ).textContent = values.minsPlace;
+      refs.mins.textContent = values.minsPlace;
     }
 
     if (numbers.mins === 59) {
-      document.querySelector(
-        `${this.selector} span[data-value="hours"]`
-      ).textContent = values.hoursPlace;
+      refs.hours.textContent = values.hoursPlace;
     }
 
     if (numbers.hours === 11) {
-      document.querySelector(
-        `${this.selector} span[data-value="days"]`
-      ).textContent = values.daysPlace;
+      refs.days.textContent = values.daysPlace;
     }
 
     if (
